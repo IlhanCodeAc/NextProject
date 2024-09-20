@@ -13,6 +13,7 @@ import Image from 'next/image';
 import summer from './maxresdefault.jpg';
 import autumn from './maxresdefault (1).jpg';
 import winter from './maxresdefault (2).jpg';
+import { Cards } from './_components/productCards/cards';
 
 const Home = () => {
   return (
@@ -55,6 +56,7 @@ const Home = () => {
         </Swiper>
       </div>
     </Container>
+    
   );
 }
 

@@ -1,0 +1,20 @@
+.ProductContainer {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows:1fr 1fr;}
+
+.ProductCard{
+}
+
+.ProductImage{
+    height: 300px;
+    
+}
+.ProductCardFooter{
+    padding: 10px;
+    transform: translate(0,-10px);
+    background: rgb(177,174,174);
+    background: linear-gradient(90deg, rgba(177,174,174,1) 0%, rgba(242,242,245,1) 12%, rgba(250,251,254,1) 54%, rgba(171,25,0,1) 98%);
+}
