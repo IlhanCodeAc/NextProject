@@ -15,31 +15,14 @@ export async function Cards(): Promise<React.JSX.Element> {
                     <div className={style.ProductCard}>
                         <img className={style.ProductImage} src={product.image} alt="" />
                         <div className={style.ProductCardFooter}>
-                            <h2 className={style.ProductName}>{product.name}</h2>
+                            <div className={style.ProductInfo}><h2 className={style.ProductName}>{product.name}</h2> <h2 className={style.ProductPrice}>{product.price}$</h2></div>
                             <div className={style.ProductButtons}>
                                 <button className={style.SendToCart}>Add To Cart</button>
+                                <button className={style.readMoreCard}>Read More</button>
                             </div>
                         </div>
-                        <div className={style.ProductCard}>
-                        <img className={style.ProductImage} src={product.image} alt="" />
-                        <div className={style.ProductCardFooter}>
-                            <h2 className={style.ProductName}>{product.name}</h2>
-                            <div className={style.ProductButtons}>
-                                <button className={style.SendToCart}>Add To Cart</button>
-                            </div>
                         </div>
                     </div>
-                    <div className={style.ProductCard}>
-                        <img className={style.ProductImage} src={product.image} alt="" />
-                        <div className={style.ProductCardFooter}>
-                            <h2 className={style.ProductName}>{product.name}</h2>
-                            <div className={style.ProductButtons}>
-                                <button className={style.SendToCart}>Add To Cart</button>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
-                </div>
             ))}
             </Container>
         </>
