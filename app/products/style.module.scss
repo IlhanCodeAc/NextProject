@@ -9,4 +9,11 @@
     float: left;
     padding: 8px 16px;
     text-decoration: none;
+    border-radius: 50%;
+    transition: 0.3s;
   }
+  .pagination a:hover {
+    background-color: black;
+    color: white;
+  }
+  
