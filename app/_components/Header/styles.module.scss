@@ -28,6 +28,11 @@ z-index: 999;
     }   
    
 }
+.Right{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
 .Right a {
     font-size: 18px;
     font-family: 'Unlock', sans-serif; 

@@ -13,6 +13,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { UserButton } from '@clerk/nextjs';
 
 
 const unlock = Unlock({
@@ -41,6 +42,8 @@ const Header = () => {
             </Link>
             <div className={style.Right}>
                 <Link href="/products">Games</Link>
+                <UserButton/>
+                
             </div>
             </div>
         </Container>

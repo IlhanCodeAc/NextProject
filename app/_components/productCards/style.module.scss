@@ -7,8 +7,11 @@
     }
 
 .ProductCard{
+    border-radius: 5px;
 width:100%;
 position: relative;
+border: 2px solid rgba(171,25,0,1);
+
 
 }
 
@@ -27,6 +30,10 @@ position: relative;
     
 }
 .ProductPrice{
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    width: 95px;
     padding: 3px;
     background-color: rgba(171,25,0,1) ;
     color: white;
@@ -36,9 +43,6 @@ position: relative;
 .ProductCardFooter{
     padding: 10px;
     transform: translate(0,-5px);
-    border-left: 2px solid rgba(171,25,0,1) ;
-    border-right: 2px solid rgba(171,25,0,1) ;
-    border-bottom: 2px solid rgba(171,25,0,1) ;
     z-index: 1;
     .ProductButtons{
         display: flex;
@@ -46,6 +50,7 @@ position: relative;
         align-items: center;
     }
     .SendToCart{
+        margin-left: 10px;
         line-height: 40px;
         
   padding: 0;
@@ -131,16 +136,30 @@ position: relative;
         100% { transform: scale(50) rotate(45deg); opacity: 0; }
     }
 }    
+@keyframes mymove {
+    50% {border-color: lightblue;}
+  }
 .ProductModal{
-    width: 500px;
+    border: 2px solid rgba(171,25,0,1);
+    width: 600px;
     height: 200px;
     position: absolute;
     background-color: white;
     display: none;
+    transition: 0.3s;
+    opacity: 1;
+    animation: mymove 5s infinite;  
+    padding: 10px;
+    
 
     .ModalImages{
         display: flex;
+    display: none;
         gap: 10px;
+        opacity: 1;
+    transition: 0.3s;
+    margin-bottom: 20px;
+
 
     img{
         height: 100px;
@@ -148,8 +167,28 @@ position: relative;
     }
 }
 }
-.ProductCard:hover{
-    .ModalImages{
+.ModalImages:hover{
         display: flex;
-    }
+        opacity: 0;
+        
+}
+.ProductCard:hover{
+    .ProductModal{
+    display: initial;
+    transform: translate(-10%,-180%);
+    z-index: 999;
+    opacity: 1;
+}
+.ModalImages{
+    display: flex;
+    opacity: 1;
+}
+}
+.modalInfo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.readMoreCard{
+    text-decoration: none;
 }

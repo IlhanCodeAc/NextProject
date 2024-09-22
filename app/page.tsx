@@ -18,7 +18,7 @@ const Home = ({product}:{product:Product}) => {
         <Mainswiper/>
       </div>
     <Container>
-      
+      <h2 className={style.NewDeals}>NEW DEALS</h2>
       <Cards/>
     </Container>
     </>
