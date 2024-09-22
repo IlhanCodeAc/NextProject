@@ -22,6 +22,14 @@ export async function Cards(): Promise<React.JSX.Element> {
                             </div>
                         </div>
                         </div>
+                        <div className={style.ProductModal}>
+                            <div className={style.ModalImages}>
+                                <img src={product.sliderImageOne} alt="" />
+                                <img src={product.sliderImageTwo} alt="" />
+                                <img src={product.sliderImageThree} alt="" />
+
+                            </div>
+                        </div>
                     </div>
             ))}
             </Container>

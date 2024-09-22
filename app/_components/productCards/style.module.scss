@@ -7,8 +7,11 @@
     }
 
 .ProductCard{
-width:100%
+width:100%;
+position: relative;
+
 }
+
 
 .ProductImage{
     height: 250px;
@@ -128,3 +131,25 @@ width:100%
         100% { transform: scale(50) rotate(45deg); opacity: 0; }
     }
 }    
+.ProductModal{
+    width: 500px;
+    height: 200px;
+    position: absolute;
+    background-color: white;
+    display: none;
+
+    .ModalImages{
+        display: flex;
+        gap: 10px;
+
+    img{
+        height: 100px;
+        width: 200px;
+    }
+}
+}
+.ProductCard:hover{
+    .ModalImages{
+        display: flex;
+    }
+}
