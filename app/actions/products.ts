@@ -1,12 +1,17 @@
 import prisma from "../lib/db";
 
-const getByID = async ({id}:{id:string}) => {
+const GetByID = async ({ params }: { params: { id: string } }) => {
     const product = await prisma.product.findUnique({
         where: {
-            id: id,
+            id: params.id,
         },
     });
+
+    if (!product) {
+        throw new Error("Product not found");
+    }
+
     return product; 
 };
 
-export default getByID;
+export default GetByID;

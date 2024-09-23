@@ -26,6 +26,11 @@
   font-size: 24px;
   font-family: "Unlock" !important;
 }
+.NavContainer .nav .Right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
 .NavContainer .nav .Right a {
   font-size: 18px;
   font-family: "Unlock", sans-serif;

@@ -19,7 +19,10 @@ export async function Cards(): Promise<React.JSX.Element> {
                             </div>
                             <div className={style.ProductButtons}>
                                 <button className={style.SendToCart}>Add To Cart</button>
-                                <Link href={"/products/${id}"} className={style.readMoreCard}>Read More</Link>
+                                <Link key={product.id} href={`/products/${product.id}`} className={style.readMoreCard}>
+  Read More
+</Link>
+
 
                             </div>
                         </div>

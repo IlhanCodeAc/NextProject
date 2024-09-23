@@ -16,6 +16,7 @@ model Product {
   sliderImageOne String
   sliderImageTwo String
   sliderImageThree String
+  gameplayVideo String
 }
 model HomeProducts{
   id String @id @default(cuid())

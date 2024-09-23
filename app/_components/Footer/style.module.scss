@@ -23,5 +23,14 @@ box-shadow: 1px 3px 36px -14px rgba(186,186,186,1);
             margin-bottom: 15px;
             text-align: center;
         }
+        .Links{
+            display: flex;
+            justify-content: flex-end;
+            gap: 5px;
+            img{
+                width: 30px;
+                height: 30px;
+            }
+        }
     }
 }
