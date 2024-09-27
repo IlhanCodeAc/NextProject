@@ -1,6 +1,6 @@
 "use server";
 
-import { Prisma } from "@prisma/client";
+import { Prisma, Product } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import prisma from "../lib/db";
 import Swal from "sweetalert2";
@@ -9,18 +9,19 @@ import { redirect } from 'next/navigation'
 // export async function createProduct(data:Prisma.ProductCreateInput){
     
 // }
-export async function createProduct(data:FormData){
-    console.log(data)
+export async function createProduct(data:Product){
     const newProduct = {
-        name: data.get("name") as string,
-        image: data.get("image") as string,
-        description: data.get("description") as string,
-        price: Number(data.get("price")),
-        sliderImageOne: data.get("sliderImageOne") as string,
-        sliderImageTwo: data.get("sliderImageTwo") as string,
-        sliderImageThree: data.get("sliderImageThree") as string,
-        gameplayVideo: data.get("gameplayVideo") as string,
+        name: data.name,
+        image: data.image,
+        description: data.description,
+        price: Number(data.price),
+        sliderImageOne: data.sliderImageOne,
+        sliderImageTwo: data.sliderImageTwo,
+        sliderImageThree: data.sliderImageThree,
+        gameplayVideo: data.gameplayVideo,
     };
+    console.log(newProduct);
+    
     const product =await prisma.product.create({
         data:newProduct
     })
@@ -49,7 +50,7 @@ export async function deleteProduct(id:string){
     
     
     revalidatePath("/products")
-    redirect(`/products`)
+    redirect("/products")
     return product
 }
 

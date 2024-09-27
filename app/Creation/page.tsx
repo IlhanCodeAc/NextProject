@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { createProduct } from "../(actions)/product"; // Assuming this is your server action for Prisma
+import { createProduct } from "../(actions)/product";
 import {
   Container,
   TextField,
@@ -12,8 +12,10 @@ import {
   Paper,
 } from "@mui/material";
 import style from "./style.module.scss";
-import Image from "next/image"; // If using Next.js for image optimization
-import { UploadButton } from "@/utils/uploadthing";
+import Image from "next/image";
+import { UploadButton } from "@/src/utils/uploadthing";
+import { Product } from "@prisma/client";
+import Swal from "sweetalert2";
 
 interface FormData {
   name: string;
@@ -27,10 +29,18 @@ interface FormData {
 }
 
 const Page = () => {
-  const { register, handleSubmit, control, setValue } = useForm<FormData>();
+  const { register, handleSubmit, control, setValue } = useForm<Product>();
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: Product) => {
+    console.log(data);
     try {
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500
+      });
       await createProduct(data); 
     } catch (error) {
       console.error("Error creating product:", error);
