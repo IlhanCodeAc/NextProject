@@ -1,9 +1,8 @@
 "use client";
 
 import React from "react";
-import { useForm } from "react-hook-form";
-import style from "./style.module.scss";
-import { createProduct } from "../(actions)/product";
+import { useForm, Controller } from "react-hook-form";
+import { createProduct } from "../(actions)/product"; // Assuming this is your server action for Prisma
 import {
   Container,
   TextField,
@@ -12,7 +11,9 @@ import {
   Grid,
   Paper,
 } from "@mui/material";
-import Uploader from "../example-uploader/page";
+import style from "./style.module.scss";
+import Image from "next/image"; // If using Next.js for image optimization
+import { UploadButton } from "@/utils/uploadthing";
 
 interface FormData {
   name: string;
@@ -24,8 +25,17 @@ interface FormData {
   sliderImageThree: string;
   gameplayVideo: string;
 }
+
 const Page = () => {
-  const { register, handleSubmit } = useForm<FormData>();
+  const { register, handleSubmit, control, setValue } = useForm<FormData>();
+
+  const onSubmit = async (data: FormData) => {
+    try {
+      await createProduct(data); 
+    } catch (error) {
+      console.error("Error creating product:", error);
+    }
+  };
 
   return (
     <div className={style.pageWrapper}>
@@ -35,13 +45,13 @@ const Page = () => {
             Create a New Product
           </Typography>
 
-          <form action={createProduct} className={style.form}>
+          <form onSubmit={handleSubmit(onSubmit)} className={style.form}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
                   fullWidth
                   label="Product Name"
-                  {...register("name")}
+                  {...register("name", { required: true })}
                   variant="outlined"
                   required
                 />
@@ -53,19 +63,43 @@ const Page = () => {
                   label="Price"
                   type="number"
                   inputProps={{ step: "0.01" }}
-                  {...register("price")}
+                  {...register("price", { required: true })}
                   variant="outlined"
                   required
                 />
               </Grid>
 
               <Grid item xs={12} sm={6}>
-                <TextField
-                  fullWidth
-                  label="Main Image URL"
-                  {...register("image")}
-                  variant="outlined"
-                  required
+                <Controller
+                  name="image"
+                  control={control}
+                  render={({ field }) => (
+                    <div>
+                      <Typography variant="body1">Product Image</Typography>
+                      {field.value ? (
+                        <>
+                          <Image src={field.value} width={100} height={100} alt="Product" />
+                          <Button
+                            onClick={() => setValue("image", "")}
+                            variant="outlined"
+                            color="secondary"
+                          >
+                            Remove Image
+                          </Button>
+                        </>
+                      ) : (
+                        <UploadButton
+                          endpoint="imageUploader" 
+                          onClientUploadComplete={(res) => {
+                            const url = res[0]?.url;
+                            if (url) {
+                              setValue("image", url);
+                            }
+                          }}
+                        />
+                      )}
+                    </div>
+                  )}
                 />
               </Grid>
 
@@ -73,7 +107,7 @@ const Page = () => {
                 <TextField
                   fullWidth
                   label="Description"
-                  {...register("description")}
+                  {...register("description", { required: true })}
                   multiline
                   rows={4}
                   variant="outlined"
@@ -131,7 +165,6 @@ const Page = () => {
           </form>
         </Paper>
       </Container>
-      
     </div>
   );
 };
