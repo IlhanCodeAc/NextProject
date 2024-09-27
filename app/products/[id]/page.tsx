@@ -4,6 +4,9 @@ import { YouTubeEmbed } from '@next/third-parties/google';
 import { Container } from '@mui/material';
 import style from "./style.module.scss"
 import Link from 'next/link';
+import { deleteProduct } from '@/app/(actions)/product';
+import Delete from '@/app/_components/Delete/Delete';
+import DeleteButton from '@/app/_components/Delete/Delete';
 
 const Page = async ({ params }: { params: { id: string } }) => {
     let product;
@@ -20,6 +23,8 @@ const Page = async ({ params }: { params: { id: string } }) => {
     return (
         <>
         <Container>
+
+
             <div className={style.ProductLeft}>
             <div className={style.ProductTop}>
             <h2 className={style.ProductName}>{product.name}</h2>
@@ -51,6 +56,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
 <div className={style.ProductPurchase}>
 <h1>Purchase Info:</h1>
 <div className={style.PurchaseInfo}>
+<DeleteButton id={product.id} />
 <h2 className={style.ProductPrice}>{product.price}$</h2>
 <button className={style.SendToCart}>Add To Cart</button>
 </div>

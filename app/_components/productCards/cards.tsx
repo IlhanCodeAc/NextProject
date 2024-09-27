@@ -3,6 +3,8 @@ import React from 'react';
 import style from './style.module.scss';
 import { Container } from '@mui/material';
 import Link from 'next/link';
+import DeleteButton from '../Delete/Delete';
+
 
 export async function Cards(): Promise<React.JSX.Element> {
     const products = await prisma.product.findMany();
@@ -14,6 +16,7 @@ export async function Cards(): Promise<React.JSX.Element> {
                         <img className={style.ProductImage} src={product.image} alt={product.name} />
                         <div className={style.ProductCardFooter}>
                             <div className={style.ProductInfo}>
+                                
                                 <h2 className={style.ProductName}>{product.name}</h2>
                                 <h2 className={style.ProductPrice}>{product.price}$</h2>
                             </div>

@@ -1,26 +1,10 @@
-"use server"
+"use server";
 
-import prisma from "../lib/db";
-
-const GetByID = async ({ params }: { params: { id: string } }) => {
-    const product = await prisma.product.findUnique({
-        where: {
-            id: params.id,
-        },
-    });
-
-    if (!product) {
-        throw new Error("Product not found");
-    }
-
-    return product; 
-};
-
-export default GetByID;
-
-
+import { Prisma } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-
+import prisma from "../lib/db";
+import Swal from "sweetalert2";
+import { redirect } from 'next/navigation'
 
 // export async function createProduct(data:Prisma.ProductCreateInput){
     
@@ -41,11 +25,34 @@ export async function createProduct(data:FormData){
         data:newProduct
     })
         
-
+Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500
+      });
     
     revalidatePath("/products")
     return product
 }
+export async function deleteProduct(id:string){
+    
+    
+    const product= await prisma.product.delete({
+        where:{
+            id
+        }
+        
+    })
+    console.log(product)
+    
+    
+    revalidatePath("/products")
+    redirect(`/products`)
+    return product
+}
+
 export const Filter = async (sortOrder: string) => {
     const orderBy = sortOrder === 'asc' ? 'asc' : 'desc';
   
@@ -53,9 +60,7 @@ export const Filter = async (sortOrder: string) => {
       orderBy: [
         {
           price: orderBy,
-        }
+        },
       ],
-      
     });
   };
-  

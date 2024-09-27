@@ -14,6 +14,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { UserButton } from '@clerk/nextjs';
+import Dropdown from '../Dropdown/Dropdown';
 
 
 const unlock = Unlock({
@@ -42,8 +43,8 @@ const Header = () => {
             </Link>
             <div className={style.Right}>
                 <Link href="/products">Games</Link>
+                <Link href="/Creation">Add new game</Link>
                 <UserButton/>
-                
             </div>
             </div>
         </Container>
