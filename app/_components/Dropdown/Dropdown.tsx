@@ -4,20 +4,20 @@ import * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { useRouter } from 'next/navigation';
 
 export default function Dropdown() {
   const router = useRouter();
   const [sortOrder, setSortOrder] = React.useState('');
 
-  const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+  const handleChange = ((event: SelectChangeEvent<string>) => {
     const selectedValue = event.target.value as string;
     setSortOrder(selectedValue);
     
-    const query = selectedValue ? `?sort=${selectedValue}` : '';
+    const query = selectedValue ? `?sort=price-${selectedValue}` : '';
     router.push(`/products${query}`); 
-  };
+  })
 
   return (
     <div>

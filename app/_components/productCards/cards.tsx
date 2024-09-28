@@ -1,13 +1,18 @@
-import prisma from '@/app/lib/db';
+
 import React from 'react';
 import style from './style.module.scss';
 import { Container } from '@mui/material';
 import Link from 'next/link';
 import DeleteButton from '../Delete/Delete';
+import { Product } from '@prisma/client';
 
+type Props = {
+    products: Product[]
+}
 
-export async function Cards(): Promise<React.JSX.Element> {
-    const products = await prisma.product.findMany();
+export async function Cards({ products }: Props): Promise<React.JSX.Element> {
+ 
+
     return (
         <Container>
             <div className={style.ProductContainer}>
@@ -16,17 +21,14 @@ export async function Cards(): Promise<React.JSX.Element> {
                         <img className={style.ProductImage} src={product.image} alt={product.name} />
                         <div className={style.ProductCardFooter}>
                             <div className={style.ProductInfo}>
-                                
                                 <h2 className={style.ProductName}>{product.name}</h2>
                                 <h2 className={style.ProductPrice}>{product.price}$</h2>
                             </div>
                             <div className={style.ProductButtons}>
                                 <button className={style.SendToCart}>Add To Cart</button>
-                                <Link key={product.id} href={`/products/${product.id}`} className={style.readMoreCard}>
-  Read More
-</Link>
-
-
+                                <Link href={`/products/${product.id}`} className={style.readMoreCard}>
+                                    Read More
+                                </Link>
                             </div>
                         </div>
                         <div className={style.ProductModal}>
@@ -36,9 +38,9 @@ export async function Cards(): Promise<React.JSX.Element> {
                                 <img src={product.sliderImageThree} alt="" />
                             </div>
                             <div className={style.modalInfo}>
-                            <h2 className={style.ProductName}>{product.name}</h2>
+                                <h2 className={style.ProductName}>{product.name}</h2>
                                 <h2 className={style.ProductPrice}>{product.price}$</h2>
-                                </div>
+                            </div>
                         </div>
                     </div>
                 ))}

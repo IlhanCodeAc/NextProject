@@ -3,6 +3,14 @@
     margin-bottom: 15px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    @media screen and (max-width:1200px) {
+        grid-template-columns: 1fr 1fr;
+        
+    }
+    @media screen and (max-width:800px) {
+        grid-template-columns: 1fr;
+        
+    }
     gap: 20px;
     }
 
@@ -152,9 +160,20 @@ font-family: sans-serif;
     opacity: 1;
     animation: mymove 5s infinite;  
     padding: 10px;
+    @media screen and (max-width:1200px) {
+        width: 400px;
+        
+    }
+    @media screen and (max-width:800px) {
+        width: 370px;
+        
+    }
     
 
     .ModalImages{
+        @media screen and (max-width:1200px) {
+        overflow: auto;            
+        }
         display: flex;
     display: none;
         gap: 10px;
@@ -180,6 +199,10 @@ font-family: sans-serif;
     transform: translate(-10%,-180%);
     z-index: 999;
     opacity: 1;
+    @media screen and (max-width:1200px) {
+    transform: translate(-4%,-180%);
+
+    }
 }
 .ModalImages{
     display: flex;
